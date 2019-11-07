@@ -1,0 +1,45 @@
+<?php
+$_designerCollection = $block->getCollection();
+$show_designer_name = $this->getConfig('group_page/show_designer_name');
+// Boostrap Carousel
+$lg_column_item = (int)$this->getConfig('group_page/lg_column_item',6);
+$md_column_item = (int)$this->getConfig('group_page/md_column_item',6);
+$sm_column_item = (int)$this->getConfig('group_page/sm_column_item',4);
+$xs_column_item = (int)$this->getConfig('group_page/xs_column_item',2);
+
+$lg_column = 12/$lg_column_item;
+$md_column = 12/$md_column_item;
+$sm_column = 12/$sm_column_item;
+$xs_column = 12/$xs_column_item;
+$i = 1;
+$x = 0;
+?>
+<?php if ( $_designerCollection->count() ){ ?>
+<?php $total = $_designerCollection->getSize(); ?>
+<div class="designerlist">
+	<div class="block-content">
+		<?php foreach ($_designerCollection as $_designer) { ?>
+		<?php if( $lg_column_item == 1 || $x%$lg_column_item == 0){ ?>
+		<div class="row">
+			<?php } ?>
+			<div class="col-lg-<?php echo $lg_column ?> col-md-<?php echo $md_column ?> col-sm-<?php echo $sm_column ?> col-xs-<?php echo $xs_column ?>">
+				<div class="designer-item">
+					<div class="designer-image"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><img src="<?php echo $_designer->getThumbnailUrl(); ?>"/></a></div>
+					<?php if($show_designer_name){ ?>
+					<div class="designer-name"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName() ?></a></div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php if( $lg_column_item == 1 || ($x+1)%$lg_column_item == 0 || $i == $total ) {  ?>
+		</div>
+		<?php } ?>
+		<?php $i++; $x++; ?>
+		<?php } ?>
+	</div>
+	<div class="designer-toolbar">
+		<?php echo $block->getChildHtml('group-toolbar'); ?>
+	</div>
+</div>
+<?php }else{ ?>
+<div class="message info empty"><div><?php echo __('We can\'t find designer matching the selection.'); ?></div></div>
+<?php } ?>

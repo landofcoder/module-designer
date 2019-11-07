@@ -1,0 +1,5 @@
+<?php if ($_description = $block->getCurrentDesigner()->getDescription()): ?>
+	<div class="designer-description">
+		<?php echo $this->helper('Lof\Designer\Helper\Data')->filter($_description) ?>
+	</div>
+<?php endif; ?>

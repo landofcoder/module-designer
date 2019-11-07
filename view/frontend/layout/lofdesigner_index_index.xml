@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_Designer
+ * @copyright  Copyright (c) 2014 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			<block class="Lof\Designer\Block\Designerpage" name="lofdesigner.list">
+				<block class="Lof\Designer\Block\Toolbar" name="lofdesigner_toolbar" template="Lof_Designer::toolbar.phtml">
+					<block class="Magento\Theme\Block\Html\Pager" name="designer_list_toolbar_pager"/>
+				</block>
+			</block>
+		</referenceContainer>
+		<referenceContainer name="sidebar.main">
+			<block class="Lof\Designer\Block\GroupList" name="group_list" template="Lof_Designer::grouplist.phtml"/>
+			<block class="Magento\Framework\View\Element\Template" ifconfig="lofdesigner/general_settings/enable_search" name="designer.searchform.main" template="Lof_Designer::search/form.phtml" before="-"/>
+		</referenceContainer>
+	</body>
+</page>

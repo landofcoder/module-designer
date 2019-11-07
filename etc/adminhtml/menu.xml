@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_Designer
+ * @copyright  Copyright (c) 2014 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+	<menu> 
+		<add id="Lof_Designer::designer" title="Designer" module="Lof_Designer" sortOrder="40" resource="Lof_Designer::designer" parent="Lof_All::lof_all"/>  
+		<add id="Lof_Designer::designer_new" title="Add New Designer" module="Lof_Designer" sortOrder="10" parent="Lof_Designer::designer" action="lofdesigner/designer/new" resource="Lof_Designer::designer"/> 
+		<add id="Lof_Designer::designer_manage" title="Manage Designers" module="Lof_Designer" sortOrder="20" parent="Lof_Designer::designer" action="lofdesigner/designer/index" resource="Lof_Designer::designer"/>
+		<add id="Lof_Designer::designer_group_manage" title="Manage Groups" module="Lof_Designer" sortOrder="40" parent="Lof_Designer::designer" action="lofdesigner/group/index" resource="Lof_Designer::group"/>
+		<add id="Lof_Designer::import" title="Import Designers Products" module="Lof_Designer" sortOrder="45" parent="Lof_Designer::designer" action="lofdesigner/import/index" resource="Lof_Designer::import"/>
+        <add id="Lof_Designer::configuration" title="Settings" module="Lof_Designer" sortOrder="50"
+            parent="Lof_Designer::designer" action="adminhtml/system_config/edit/section/lofdesigner" resource="Lof_Designer::config_designer"/>
+	</menu>
+</config>

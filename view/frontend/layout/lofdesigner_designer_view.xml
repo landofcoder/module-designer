@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_Designer
+ * @copyright  Copyright (c) 2014 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+        <referenceContainer name="columns.top">
+            <container name="designer.view.container" htmlTag="div" htmlClass="designer-view" after="-">
+                <block class="Lof\Designer\Block\Designer\View" name="designer.image" template="Lof_Designer::designer/image.phtml"/>
+                <block class="Lof\Designer\Block\Designer\View" name="designer.description" template="Lof_Designer::designer/description.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="sidebar.main">
+            <block class="Lof\Designer\Block\GroupList" name="group_list" template="Lof_Designer::grouplist.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" ifconfig="lofdesigner/general_settings/enable_search" name="designer.searchform.main" template="Lof_Designer::search/form.phtml" before="-"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Lof\Designer\Block\Designer\View" name="designer.products" template="Lof_Designer::designer/view.phtml">
+                <block class="Lof\Designer\Block\Designer\Product\ListProduct" name="designer.products.list" as="product_list" template="Magento_Catalog::product/list.phtml">
+                    <container name="category.product.list.additional" as="additional" />
+                    <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                        <block class="Magento\Framework\View\Element\Template" as="default"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                    </action>
+                </block>
+            </block>
+            <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+                <arguments>
+                    <argument name="triggers" xsi:type="array">
+                        <item name="compareProductLink" xsi:type="string">.action.tocompare</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

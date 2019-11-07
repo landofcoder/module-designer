@@ -1,0 +1,71 @@
+<?php
+$designerCollection = $this->getDesignerCollection();
+$data = $this->helper('Lof\Designer\Helper\Data');
+$designer_layout_listing = $data->getConfig("product_view_page/designer_layout_listing");
+$show_designer_text = $data->getConfig("product_view_page/show_designer_text");
+$show_designer_description = $data->getConfig("product_view_page/show_designer_description");
+$designer_text = $data->getConfig("product_view_page/designer_text");
+$designer_text = $designer_text?$designer_text:__('Designers: ');
+$show_designer_image = $data->getConfig("product_view_page/show_designer_image");
+$show_designer_name = $data->getConfig("product_view_page/show_designer_name");
+?>
+<?php if($designerCollection && $designerCollection->count()){ ?>
+	<?php
+	$i = 0;
+	$total = $designerCollection->count();
+	if($show_designer_text){
+		echo '<span class="designer-label">'.$designer_text.'</span>';
+	}
+	?>
+	<?php if($designer_layout_listing) { 
+		echo '<ul class="product-designers">';
+		foreach ($designerCollection as $_designer) {
+			?>
+			<li class="designer-item">
+				<?php if($show_designer_image): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>">
+				<img src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>"/></a>
+				<?php endif; ?>
+				<?php if($show_designer_name): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName(); ?></a>
+				<?php endif; ?>
+				<?php 
+				if($show_designer_description){ 
+				$_description = $_designer->getDescription();
+				?>
+				<div class="designer-description">
+					<?php echo $this->helper('Lof\Designer\Helper\Data')->filter($_description) ?>
+				</div>
+				<?php } ?>
+			</li>
+			<?php
+		}
+		echo '</ul>';
+	} else {
+		foreach ($designerCollection as $_designer) { 
+		
+		?>
+			<span class="designer-image">
+				<?php if($show_designer_image): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>">
+				<img src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>"/></a>
+				<?php endif; ?>
+				<?php if($show_designer_name): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName(); ?></a>
+				<?php endif; ?>
+			</span>
+			<?php 
+			if($show_designer_description){ 
+			$_description = $_designer->getDescription();
+			?>
+			<div class="designer-description">
+				<?php echo $this->helper('Lof\Designer\Helper\Data')->filter($_description) ?>
+			</div>
+			<?php } ?>
+			<?php if($i<=($total-2)){ echo ', '; }  ?>
+			<?php $i++; ?>
+	 <?php 
+		}
+	} 
+	?>
+<?php } ?>

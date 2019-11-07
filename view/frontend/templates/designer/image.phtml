@@ -1,0 +1,8 @@
+<?php
+$_designer = $block->getCurrentDesigner();
+$_img = '';
+if($_img = $_designer->getImageUrl()){ ?>
+<div class="designer-image">
+	<img src="<?php echo $_img ?>" alt="<?php echo $_designer->getName(); ?>" class="image"/>
+</div>
+<?php }

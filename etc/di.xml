@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lof_Designer
+ * @copyright  Copyright (c) 2014 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Catalog\Model\Layer" type="Lof\Designer\Model\Layer" />
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="designer_listing_data_source" xsi:type="string">Lof\Designer\Model\ResourceModel\Designer\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Lof\Designer\Model\ResourceModel\Designer\Grid\Collection">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">lof_designer</argument>
+			<argument name="eventPrefix" xsi:type="string">lof_designer_grid_collection</argument>
+			<argument name="eventObject" xsi:type="string">designer_grid_collection</argument>
+			<argument name="resourceModel" xsi:type="string">Lof\Designer\Model\ResourceModel\Designer</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="group_listing_data_source" xsi:type="string">Lof\Designer\Model\ResourceModel\Group\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Lof\Designer\Model\ResourceModel\Group\Grid\Collection">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">lof_designer_group</argument>
+			<argument name="eventPrefix" xsi:type="string">lof_designer_grid_collection</argument>
+			<argument name="eventObject" xsi:type="string">group_grid_collection</argument>
+			<argument name="resourceModel" xsi:type="string">Lof\Designer\Model\ResourceModel\Designer</argument>
+		</arguments>
+	</type>
+	<type name="Lof\Designer\Model\Layer\Resolver">
+		<arguments>
+			<argument name="layersPool" xsi:type="array">
+				<item name="designer" xsi:type="string">Lof\Designer\Model\Layer\Designer</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Lof\Designer\Model\Layer\Designer">
+		<arguments>
+			<argument name="context" xsi:type="object">Magento\Catalog\Model\Layer\Category\Context</argument>
+		</arguments>
+	</type>
+	<type name="Lof\Designer\Block\Designer\Product\ListProduct">
+		<arguments>
+			<argument name="layerResolver" xsi:type="object">Lof\Designer\Model\Layer\Resolver</argument>
+		</arguments>
+	</type>
+	<virtualType name="DesignerGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+	<virtualType name="DesignerGridDataProvider" type="Lof\Designer\Ui\DataProvider\Designer\DesignerDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">DesignerGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GroupGridDataProvider" type="Lof\Designer\Ui\DataProvider\Designer\GroupDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">DesignerGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>
