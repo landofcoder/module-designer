@@ -27,7 +27,9 @@ $x = 0;
 			<?php } ?>
 			<div class="col-lg-<?php echo $lg_column ?> col-md-<?php echo $md_column ?> col-sm-<?php echo $sm_column ?> col-xs-<?php echo $xs_column ?>">
 				<div class="designer-item">
+					<?php if($_designer->getThumbnailUrl()){ ?>
 					<div class="designer-image"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><img src="<?php echo $_designer->getThumbnailUrl(); ?>"/></a></div>
+					<?php } ?>
 					<?php if($show_designer_name){ ?>
 					<div class="designer-name"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName() ?></a></div>
 					<?php } ?>

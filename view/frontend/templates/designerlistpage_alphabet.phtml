@@ -1,0 +1,128 @@
+<?php
+
+$_designerCollection = $block->getCollection();
+$show_designer_name = $this->getConfig('designer_list_page/show_designer_name');
+$number_columns = 3;
+$pretext = $this->getData("pretext");
+echo $pretext;
+?>
+
+<?php if ( $_designerCollection ){ ?>
+<div class="content">
+    <div class="brands-filters">
+        <div class="input-box">
+            <div class="ambrands-search-wrapper">
+                <?php echo $block->getChildHtml("designer.alphabetsearchform.main"); ?>
+            </div>
+        </div>
+        <script type="text/javascript">
+        </script>
+        <div class="letters">
+            <div class="letters-box">
+                    <a href="javascript:void(0)" class="letter letter-all" title="<?php echo __("All Suppliers");?>"><?php echo __("All Suppliers");?></a>
+            </div>
+            <div class="letters-box">
+                <?php foreach($_designerCollection as $letter => $_designer){ ?>
+                    <a href="javascript:void(0)" class="letter <?php if($_designer){ echo 'letter-'.$letter;} else { echo 'disabled'; } ?>"><?php echo $letter; ?></a>
+                <?php } ?>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="designerlist">
+        <div class="block-content">
+            <?php 
+            $i = 1;
+            $lastLetter = null;
+            ?>
+            <?php foreach ($_designerCollection as $letter => $_designers) { ?>
+            <?php if($i == 1){ ?>
+            <div class="brand-images">
+            <?php }?> 
+            <?php 
+
+            if($lastLetter !== $letter) {
+                if($lastLetter) echo "</ul></dd></dl>";
+                ?>
+                <dl class="brands-letter letter-<?php echo $letter;?>">
+                    <dt class="letter">
+                        <span class="title"><?php echo $letter;?></span>
+                    </dt>
+                <dd>
+                    <ul class="bare-list">
+                <?php
+            }
+            $lastLetter = $letter;
+            foreach($_designers as $_designer){
+                ?>
+            <li class="brand-item">
+                <a href="<?php echo $_designer->getUrl(); ?>" class="item" title="<?php echo $_designer->getName(); ?>">
+                        <div class="am-image-wrapper">
+                            <?php if($thumbnail_url = $_designer->getThumbnailUrl()){ ?>
+                            <p class="designer-img"><img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $_designer->getName(); ?>"/></p>     
+                            <?php } else { ?>
+                            <p class="no-img"><?php echo $letter; ?></p>
+                            <?php } ?>
+                        </div>
+                        <p class="label"><?php echo $_designer->getName(); ?></p>
+                        <p class="count"><?php echo $_designer->getTotalProducts(); ?></p>
+                </a>
+            </li>
+                <?php
+            }
+            ?>   
+            <?php if($i%$number_columns == 0){ ?>
+            </div>    
+            <?php $i=1; } else { $i++; } ?>
+            <?php } ?>
+            <div style="clear:both;"></div>
+        </div>
+        <?php if($html = $block->getChildHtml('toolbar')){ ?>
+        <div class="designer-toolbar  toolbar toolbar-products">
+            <?php echo $block->getChildHtml('toolbar'); ?>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'Lof_Supplier/js/designer-filter',
+        'domReady!'
+    ], function ($) {
+        $(".letters-box a").click(function(e) {
+            e.preventDefault();
+            $(this).applySupplierFilter('.brands-letter');
+        });
+    });
+
+        require([
+        'jquery',
+        "mage/tooltip"
+    ], function ($) {
+        $('[data-amshopby-js="brand-tooltip"]').tooltip({
+            position: {
+                my: "left-20 bottom",
+                at: "right top",
+                collision: "flip flip",
+                using: function (position, feedback) {
+                    $(this).css(position);
+                    $("<div>")
+                        .addClass("arrow")
+                        .addClass(feedback.vertical)
+                        .addClass(feedback.horizontal)
+                        .appendTo(this);
+                }
+            },
+            tooltipClass: "amshopby-brand-tooltip",
+            content: function () {
+                var current = $(this).is('li') ? $(this) : $(this).parent();
+                return current.data('tooltip-content');
+            }
+        });
+    });
+</script>
+<?php }else{ ?>
+<div class="message info empty"><div><?php echo __('We can\'t find designer matching the selection.'); ?></div></div>
+<?php } ?>

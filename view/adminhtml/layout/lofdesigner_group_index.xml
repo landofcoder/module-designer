@@ -27,7 +27,7 @@
             <block class="Lof\Designer\Block\Adminhtml\Menu" name="lof_designer_menu" />
         </referenceContainer>
         <referenceContainer name="content">
-            <uiComponent name="group_listing"/>
+            <uiComponent name="designer_group_listing"/>
         </referenceContainer>
     </body>
 </page>

@@ -99,3 +99,250 @@
 	height: 50px;
 }
 .lof-designerlist .toolbar-products .pages{display: block;}
+.lof-supplierlist .supplierlist .supplier-item{
+	height: 70px;
+}
+.lof-supplierlist .supplierlist .supplier-toolbar{
+	margin-top: 30px;
+	text-align: right;
+}
+
+.supplier-sidebar .supplier-item {
+	height: 50px;
+}
+.lof-supplierlist .toolbar-products .pages{display: block;}
+
+ul.bare-list img {
+	max-width: 100px;
+	}
+
+.brand-item .am-image-wrapper {
+height: 100px;
+}
+
+.brand-item {
+max-width: 100px;
+min-width: 100px;
+min-height: 130px;
+}
+.brand-item .no-img {
+width: 100px;
+line-height: 100px;
+font-size: 65px;
+}
+.brand-images .brands-letter {
+    width: 100%!important;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.brand-images .brands-letter .letter {
+    border-bottom: 1px solid #b2b2b2;
+    font-size: 18px;
+    font-weight: 400;
+}
+.brand-images .brands-letter .letter .title {
+    padding: 0 2px 1px;
+    text-transform: uppercase;
+    background: #e2e2e2;
+}
+.brand-images .brands-letter .bare-list {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.brand-item {
+    max-width: 100px;
+    min-width: 100px;
+    min-height: 130px;
+}
+.brands-filters {
+    display: inline-block;
+    margin: 0 0 10px;
+    width: 100%;
+    min-height: 50px;
+}
+.ambrands-search-wrapper {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+.brands-letter .brand-item {
+    position: relative;
+    margin: 0 5px 20px;
+}
+.brand-images li.brand-item {
+    list-style-type: none;
+    text-align: center;
+}
+.brands-letter .brand-item .item {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    color: #333;
+    -webkit-justify-content: flex-start;
+}
+.brand-item .am-image-wrapper {
+    height: 100px;
+}
+.brands-letter .brand-item .am-image-wrapper {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+}
+.brand-item .no-img {
+    width: 100px;
+    line-height: 100px;
+    font-size: 65px;
+}
+.brands-letter .brand-item .no-img {
+    color: #e2e2e2;
+}
+.brands-letter .brand-item .label {
+    position: relative;
+    margin: 5px 0 0;
+    padding-top: 5px;
+    width: 100%;
+    word-wrap: break-word;
+}
+.brands-letter .brand-item .label {
+    text-transform: capitalize;
+}
+.brands-letter .brand-item .label:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    display: block;
+    height: 1px;
+    background: #b2b2b2;
+}
+.brands-letter .brand-item .count {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: #f58c12;
+    border-radius: 50%;
+    color: #fff;
+}
+.brands-letter .brand-item .count {
+    background: #c00709!important;
+}
+.ambrands-search-wrapper .ambrands-search-input {
+    display: block;
+    margin: 0 0 10px;
+    max-width: 100%;
+}
+.brands-filters .letters {
+    margin-top: 4px;
+}
+.brands-filters .letter {
+    display: block;
+    float: left;
+    margin: 0 5px 10px;
+    padding: 2px 5px;
+    min-width: 17px;
+    min-height: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #e2e2e2;
+}
+.brands-filters .letter-all {
+    min-width: 90px;
+    margin-right: 20px;
+}
+@media (min-width: 1440px), print{
+.brands-filters .letter {
+    margin: 0;
+    border-radius: 0;
+    border-right: none;
+}
+.brands-filters .letter-all {
+    margin-right: 20px;
+}
+.brands-filters .letter:last-child {
+    border-right: 1px solid #ccc;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.brands-filters .letter:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+}
+@media (min-width: 1024px), print{
+.ambrands-search-wrapper {
+	float: right;
+	width: 20%;
+}
+.brand-images .brands-letter {
+    padding-right: 35px;
+    width: inherit;
+}
+.brand-images .brands-letter .brand-item {
+    margin: 0 10px 20px;
+}
+}
+@media (min-width: 768px) {
+.brand-images {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.brand-images .brands-letter {
+    padding-right: 10px;
+    width: inherit;
+}
+.brand-images .brands-letter {
+	width:33%!important;
+}
+}
+.brands-filters .letter:hover, .brands-filters .letter.active {
+    background: #fed285;
+}
+.brands-filters .letter.disabled {
+    opacity: .6;
+    pointer-events: none;
+    background-color: #f1f1f1;
+}
+.search-form button {
+    right: -10px;
+    color: #fff;
+}
+.lof-supplierlist .supplierlist .supplier-toolbar {
+    position: relative;
+}
+form.search-form {
+    position: relative;
+}

@@ -129,6 +129,22 @@ class Designer extends \Magento\Framework\Model\AbstractModel
         return $collection;
     }
 
+    /**
+     * Get total products number
+     *
+     * @return int
+     */
+    public function getTotalProducts()
+    {
+        if(!$this->hasData("total_products")){
+            $total_products = $this->_getResource()->getTotalProducts($this->getId());
+            $this->setData("total_products", $total_products);
+        }else {
+            $total_products = $this->getData("total_products");
+        }
+        return $total_products;
+    }
+
     public function getUrl()
     {
         $url = $this->_storeManager->getStore()->getBaseUrl();
@@ -175,6 +191,13 @@ class Designer extends \Magento\Framework\Model\AbstractModel
         }
         return $this;
     }
+    public function saveProducts($product_ids = array()) {
+        if($product_ids) {
+            $this->_getResource()->saveProduct($this, $product_ids);
+        }
+        return $this;
+    }
+    
 
     public function deleteDesignersByProduct($product_id = "0"){
         if($product_id) {

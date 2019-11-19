@@ -29,7 +29,11 @@ class Designerlistlayout implements \Magento\Framework\Option\ArrayInterface
      */
     public function toOptionArray()
     {
-        return [['value' => 'list', 'label' => __('List')], ['value' => 'grid', 'label' => __('Grid')]];
+        return [['value' => 'list', 'label' => __('List')], 
+                ['value' => 'grid', 'label' => __('Grid')],
+                ['value' => 'alphabet', 'label' => __('Alphabet')],
+                ['value' => 'newlist', 'label' => __('New List')]
+            ];
     }
 
     /**
