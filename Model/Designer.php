@@ -222,4 +222,5 @@ class Designer extends \Magento\Framework\Model\AbstractModel
         };
         return $url;
     }
+
 }

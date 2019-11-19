@@ -112,5 +112,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getSearchKey(){
         return $this->_request->getParam('s');
     }
+    public function subString( $text, $length = 100, $replacer ='...', $is_striped=true ){
+        $text = ($is_striped==true)?strip_tags($text):$text;
+        if(strlen($text) <= $length){
+            return $text;
+        }
+        $text = substr($text,0,$length);
+        $pos_space = strrpos($text,' ');
+        return substr($text,0,$pos_space).$replacer;
+}
+
 
 }
