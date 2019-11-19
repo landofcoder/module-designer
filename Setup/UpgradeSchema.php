@@ -95,17 +95,6 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ]
             );
 
-            $setup->getConnection()->addColumn(
-                $designerTable,
-                'tax_number',
-                [
-                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    'nullable' => true,
-                    'comment' => 'Designer Tax/VAT Number',
-                    'length' => 150,
-                    'default' => ""
-                ]
-            );
 
             $setup->getConnection()->addColumn(
                 $designerTable,

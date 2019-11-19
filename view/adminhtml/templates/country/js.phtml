@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<script>
+    require([
+        "jquery",
+        "mage/adminhtml/form"
+    ], function ($) {
+
+        var updater = new RegionUpdater($('[name=country_id]')[0], $('[name=region]')[0], $('[name=region_id]')[0],
+            <?php echo $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>,
+            'hide'
+        );
+        updater.disableRegionValidation();
+        window.updater = updater;
+    });
+</script>

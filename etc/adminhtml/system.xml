@@ -90,6 +90,11 @@
 					<label>Layout</label>
 					<source_model>Lof\Designer\Model\Config\Source\Designerlistlayout</source_model>
 				</field>
+				<field id="pretext" translate="label comment" type="editor" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Pretext HTML</label>
+					<frontend_model>Lof\Designer\Block\Adminhtml\System\Config\Form\Field\Editor</frontend_model>
+					<comment><![CDATA[Show Pretext html. Empty to hide]]></comment>
+				</field>
 				<field id="show_designer_name" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Show Designer Name</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
