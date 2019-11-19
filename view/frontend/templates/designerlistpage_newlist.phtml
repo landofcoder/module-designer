@@ -17,7 +17,8 @@ $desc_length = 300;
 					<?php } ?>
 					<div class="designer-country-birthday"><span class="country"><?php echo $_designer->getCountryId(); ?></span> <span class="birthday">(<?php echo $_designer->getBirthdayInfo(); ?>)</span></div>
 					<div class="designer-info">
-						<?php 
+						<?php
+						$description = $_designer->getDescription();
 						$description = $_dataHelper->filter($description);
 						$description = strip_tags($description);
 						$description = trim($description);
