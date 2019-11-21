@@ -22,10 +22,8 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<body>
-		<referenceContainer name="content">
-			<referenceContainer name="product.info.main">
-				<block class="Lof\Designer\Block\Product\View" name="product.info.designer" after="product.info.price" template="Lof_Designer::product/view/logo.phtml" ifconfig="lofdesigner/product_view_page/enable_designer_info"/>
-			</referenceContainer>
+		<referenceContainer name="content.aside">
+			<block class="Lof\Designer\Block\Product\View" name="product.info.designer" after="product.info.price" template="Lof_Designer::product/view/newlogo.phtml" ifconfig="lofdesigner/product_view_page/enable_designer_info"/>
 		</referenceContainer>
 	</body>
 </page>

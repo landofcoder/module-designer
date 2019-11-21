@@ -1,9 +1,8 @@
 <?php
 $_designerCollection = $block->getCollection();
-$show_designer_name = $this->getConfig('designer_list_page/show_designer_name');
+$show_designer_name = $this->getConfig('group_page/show_designer_name');
 $_dataHelper = $this->helper('Lof\Designer\Helper\Data');
-$desc_length = $_dataHelper->getConfig("designer_list_page/desc_length");
-$desc_length = $desc_length?(int)$desc_length: 300;
+$desc_length = 300;
 $i = 1;
 ?>
 <?php if ( $_designerCollection->count() ){ ?>

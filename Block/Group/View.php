@@ -39,6 +39,8 @@ class View extends \Magento\Framework\View\Element\Template
      */
     protected $_designer;
 
+    protected $_collection = null;
+
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context      
      * @param \Magento\Framework\Registry                      $registry     
@@ -64,13 +66,7 @@ class View extends \Magento\Framework\View\Element\Template
     public function _construct()
     {
         parent::_construct();
-        $designer = $this->_designer;
-        $group = $this->getCurrentGroup();
-        $designerCollection = $designer->getCollection()
-        ->addFieldToFilter('group_id',$group->getId())
-        ->addFieldToFilter('status',1)
-        ->setOrder('position','ASC');
-        $this->setCollection($designerCollection);
+        
         $template = 'group/view.phtml';
         if(!$this->hasData('template')){
             $this->setTemplate($template);
@@ -146,9 +142,23 @@ class View extends \Magento\Framework\View\Element\Template
      */
     public function getCollection()
     {
+        if($this->_collection == null){
+            $designer = $this->_designer;
+            $group = $this->getCurrentGroup();
+            $store = $this->_storeManager->getStore();
+            $designerCollection = $designer->getCollection()
+            ->addFieldToFilter('group_id',$group->getId())
+            ->addFieldToFilter('status',1)
+            ->addStoreFilter($store)
+            ->setOrder('position','ASC');
+
+            $designerCollection->getSelect()->reset(\Zend_Db_Select::ORDER);
+            $designerCollection->setOrder('position','ASC');
+            $this->setCollection($designerCollection);
+
+        }
         return $this->_collection;
     }
-
     public function getConfig($key, $default = '')
     {
         $result = $this->_designerHelper->getConfig($key);
@@ -201,13 +211,50 @@ class View extends \Magento\Framework\View\Element\Template
     {
         $collection = $this->getCollection();
         $toolbar = $this->getToolbarBlock();
-
+        $itemsperpage = (int)$this->getConfig('group_page/item_per_page',0);
+        if(!$itemsperpage) {
+            $toolbar = false;
+        }
         // set collection to toolbar and apply sort
         if($toolbar){
-            $itemsperpage = (int)$this->getConfig('group_page/item_per_page',12);
+            
             $toolbar->setData('_current_limit',$itemsperpage)->setCollection($collection);
             $this->setChild('group-toolbar', $toolbar);
         }
+        $template = $this->getTemplate();
+        if($template == 'Lof_Designer::group/view_alphabet.phtml' || $template == 'group/view_alphabet.phtml'){
+            $collection = $this->sortDesignerByAlphabet($collection);
+            $this->setCollection($collection);
+        }
         return parent::_beforeToHtml();
+    }
+
+    public function getAlphabetLetters(){
+        $alphabet = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        return $alphabet;
+    }
+
+    public function sortDesignerByAlphabet($collection = null){
+        if(!$collection){
+            $collection = $this->getCollection();
+        }
+        $letters = $this->getAlphabetLetters();
+        $output = array();
+        foreach($letters as $letter){
+            $output[$letter] = array();
+        }
+        $output["#"] = array();
+
+        foreach($collection as $_designer) {
+            $designer_name = $_designer->getName();
+            $letter = strtoupper(substr($designer_name, 0, 1));
+            if(!in_array($letter,$letters)){
+                $letter = "#";
+            }
+            $total_products = $_designer->getTotalProducts();
+            $output[ $letter ][] = $_designer; // Or, whatever you want to output.
+            
+        }
+        return $output;
     }
 }

@@ -158,4 +158,13 @@
 			</parameter>
 		</parameters>
 	</widget>
+	<widget id="lof_designer_info" class="Lof\Designer\Block\Widget\DesignerInfo">
+		<label translate="true">Lof Designer Info on Product Page</label>
+		<description translate="true">Video designer information on product page. Just display only on product page.</description>
+		<parameters>
+			<parameter name="widget_title" xsi:type="text" visible="true" sort_order="0">
+				<label translate="true">Title</label>
+			</parameter>
+		</parameters>
+	</widget>
 </widgets>

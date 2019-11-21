@@ -55,13 +55,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Lof\Designer\Model\Group $groupCollection,
-        \Magento\Cms\Model\Template\FilterProvider $filterProvider
+        \Magento\Cms\Model\Template\FilterProvider $filterProvider,
+        \Magento\Directory\Model\CountryFactory $countryFactory
         ) {
         parent::__construct($context);
         $this->_filterProvider = $filterProvider;
         $this->_storeManager = $storeManager;
         $this->_groupCollection = $groupCollection;
         $this->_request            = $context->getRequest();
+        $this->_countryFactory = $countryFactory;
     }
 
     public function getGroupList(){
@@ -120,7 +122,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $text = substr($text,0,$length);
         $pos_space = strrpos($text,' ');
         return substr($text,0,$pos_space).$replacer;
-}
+    }
+    public function getCountryname($countryCode){    
+        $country = $this->_countryFactory->create()->loadByCode($countryCode);
+        return $country->getName();
+    }
 
 
 }

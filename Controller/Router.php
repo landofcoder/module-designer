@@ -147,6 +147,7 @@ class Router implements RouterInterface
             if(count($routeArr) > 1) {
                 $route = $routeArr[0];
             }
+            
             if( $route !='' && $urlKey == $route )
             {
                 $request->setDispatched(true);
@@ -166,14 +167,8 @@ class Router implements RouterInterface
                         ['request' => $request]
                         );
                 }
-            }else{
-                $request->setDispatched(true);
-                $this->dispatched = true;
-                return $this->actionFactory->create(
-                    'Magento\Framework\App\Action\Forward',
-                    ['request' => $request]
-                    );
             }
+
             $url_prefix = $_designerHelper->getConfig('general_settings/url_prefix');
             $url_suffix = $_designerHelper->getConfig('general_settings/url_suffix');
             $url_prefix = $url_prefix?$url_prefix:$route;
@@ -195,8 +190,14 @@ class Router implements RouterInterface
             //Check Group Url
             if( (count($identifiers) == 2 && $identifiers[0] == $url_prefix) || (trim($url_prefix) == '' && count($identifiers) == 1)){
                 $designerUrl = '';
+                
                 if( ($url_suffix && $url_suffix != $orig_url_suffix) || (!$url_suffix && $orig_url_suffix)){
-                    return null;
+                    $request->setDispatched(true);
+                    $this->dispatched = true;
+                    return $this->actionFactory->create(
+                        'Magento\Framework\App\Action\Forward',
+                        ['request' => $request]
+                        );
                 }
                 if(trim($url_prefix) == '' && count($identifiers) == 1){
                     $designerUrl = str_replace($url_suffix, '', $identifiers[0]);

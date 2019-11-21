@@ -247,14 +247,20 @@ class Designer extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 $where = ['designer_id = ?' => (int)$object->getId()];
                 $this->getConnection()->delete($table, $where);
                 $data = [];
+                $delete_products = [];
                 foreach ($quetionProducts as $k => $_post) {
                     if($this->isExistProduct($k)){
+                        $delete_products[] = (int)$k;
                         $data[] = [
                         'designer_id' => (int)$object->getId(),
                         'product_id' => $k,
                         'position' => $_post['product_position']
                         ];
                     }
+                }
+                if($delete_products){
+                    $where_delete = ['product_id IN (?)' => $delete_products];
+                    $this->getConnection()->delete($table, $where_delete);
                 }
                 $this->getConnection()->insertMultiple($table, $data);
             }
