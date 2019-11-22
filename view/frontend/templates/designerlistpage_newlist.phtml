@@ -11,7 +11,18 @@ $i = 1;
 <div class="designerlist">
 	<div class="block-content">
 		<?php foreach ($_designerCollection as $_designer) { ?>
-		<div class="row designer-item-row <?php echo $i>1?'row-margin-top':'';?>">
+		<?php
+		$custom_css_class = "";
+		if($i % 2 == 0) {
+			$custom_css_class = " body-media-color-block--text-right";
+		}
+		?>
+		<div class="row designer-item-row <?php echo ($i>1?'row-margin-top':''); echo $custom_css_class; ?>">
+			<?php
+			$designer_info = "";
+			$designer_image = "";
+			ob_start();
+			?>
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 				<div class="designer-item">
 					<?php if($show_designer_name){ ?>
@@ -31,6 +42,11 @@ $i = 1;
 					</div>
 				</div>
 			</div>
+			<?php 
+			$designer_info = ob_get_contents();
+			ob_end_clean();
+			ob_start();
+			?>
 			<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 body-media-color-block__image-col">
 				<div class="body-media-color-block__image-wrapper">
 					<?php if($_designer->getThumbnailUrl()){ ?>
@@ -39,6 +55,16 @@ $i = 1;
 					<div class="body-media-color-block__image-background" style="background-color: rgb(216, 227, 232);"></div>
 				</div>
 			</div>
+			<?php 
+			$designer_image = ob_get_contents();
+			ob_end_clean();
+
+			if($i % 2 == 0) {
+				echo $designer_image.$designer_info;
+			} else {
+				echo $designer_info.$designer_image;
+			}
+			?>
 		</div>
 		
 		<?php $i++; } ?>

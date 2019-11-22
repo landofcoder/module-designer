@@ -54,6 +54,17 @@
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
 			</group>
+			<group id="migration_settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Migration Settings</label>
+				<field id="attribute_code" translate="label comment" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Attribute Code To Migration</label>
+					<comment><![CDATA[Input the product attribute code to migration designer info of product into extension designer table. Example: supplier_name]]></comment>
+				</field>
+				<field id="default_group_id" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default Designer Group Id To Use To Mirgration</label>
+					<comment><![CDATA[Input designer group id to use as default group id when mirgration]]></comment>
+				</field>
+			</group>
 			<group id="product_view_page" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
 				<label>Designer Info On Product View Page</label>
 				<field id="enable_designer_info" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
