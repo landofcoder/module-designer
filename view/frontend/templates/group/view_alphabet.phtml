@@ -3,6 +3,8 @@
 $_designerCollection = $block->getCollection();
 $show_designer_name = $this->getConfig('group_page/show_designer_name');
 $number_columns = 3;
+$desc_length = $this->getConfig('group_page/desc_length');
+$desc_length = $desc_length ? (int)$desc_length:300;
 ?>
 
 <?php if ( $_designerCollection ){ ?>

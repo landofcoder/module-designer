@@ -2,7 +2,8 @@
 $_designerCollection = $block->getCollection();
 $show_designer_name = $this->getConfig('group_page/show_designer_name');
 $_dataHelper = $this->helper('Lof\Designer\Helper\Data');
-$desc_length = 300;
+$desc_length = $this->getConfig('group_page/desc_length');
+$desc_length = $desc_length ? (int)$desc_length:300;
 $i = 1;
 ?>
 <?php if ( $_designerCollection->count() ){ ?>
@@ -26,7 +27,7 @@ $i = 1;
 						$description = $_dataHelper->subString($description, $desc_length, "");
 						echo $description;
 						?>
-						<p><a href="<?php echo $_designer->getUrl(); ?>"><?php echo __("Get to know ").$_designer->getName(); ?></a></p>
+						<p><a href="<?php echo $_designer->getUrl(); ?>" class="link link--underline body-media-color-block__link ng-star-inserted"><?php echo __("Get to know ").$_designer->getName(); ?></a></p>
 					</div>
 				</div>
 			</div>

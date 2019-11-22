@@ -72,6 +72,9 @@
 					<label>Show Designer Description</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
+				<field id="desc_length" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Designer Descriptiong Length</label>
+				</field>
 				<field id="designer_text" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Designer Text</label>
 				</field>
@@ -98,6 +101,9 @@
 				<field id="show_designer_name" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Show Designer Name</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="desc_length" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Designer Descriptiong Length</label>
 				</field>
 				<field id="item_per_page" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Number Designer Per Page</label>
@@ -146,6 +152,9 @@
 				<field id="show_designer_name" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Show Designer Name</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="desc_length" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Designer Descriptiong Length</label>
 				</field>
 				<field id="item_per_page" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Number Designer Per Page</label>

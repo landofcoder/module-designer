@@ -92,7 +92,7 @@ class DesignerInfo extends AbstractWidget
     }
 
     public function _toHtml(){
-        if(!$this->product()) return;
+        if(!$this->getProduct()) return;
         $widget_title = $this->getData("widget_title");
         $this->assign("widget_title", $widget_title);
         $this->setTemplate("Lof_Designer::product/view/newlogo.phtml");
