@@ -404,15 +404,15 @@ form.search-form {
     width: 100%;
 }
 .block-designer-info .designer-details .designer-bio {
-    font-size: 1rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
 }
 .block-designer-info .designer-details .designer-name{
-    font-size: 1.125rem;
+    font-size: 1.525rem;
     font-weight: 700;
 }
 .block-designer-info .designer-details .designer-age{
-    font-size: 1.125rem;
+    font-size: 1.525rem;
     margin: 5px 0 10px;  
 }
 .block-designer-info .designer-details p{
@@ -422,7 +422,7 @@ form.search-form {
     display: inline-block;
     color: #121212;
     line-height: 1.3;
-    font-size: .875rem;
+    font-size: 1.475rem;
     font-weight: 600;
     text-transform: uppercase;
     position: relative;
