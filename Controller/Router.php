@@ -131,30 +131,44 @@ class Router implements RouterInterface
                     );
             }
             if (!$condition->getContinue()) {
+                $request->setDispatched(true);
+                $this->dispatched = true;
                 return null;
             }
             $route = $_designerHelper->getConfig('general_settings/route');
-
+            $orgRouter = $route;
             $urlKeyArr = explode(".",$urlKey);
+            $orig_url_suffix = "";
             if(count($urlKeyArr) > 1) {
                 $urlKey = $urlKeyArr[0];
+                $orig_url_suffix = $urlKeyArr[1];
             }
             $routeArr = explode(".",$route);
             if(count($routeArr) > 1) {
                 $route = $routeArr[0];
             }
+            
             if( $route !='' && $urlKey == $route )
             {
-                $request->setModuleName('lofdesigner')
-                ->setControllerName('index')
-                ->setActionName('index');
-                $request->setAlias(Url::REWRITE_REQUEST_PATH_ALIAS, $urlKey);
+                $request->setDispatched(true);
                 $this->dispatched = true;
-                return $this->actionFactory->create(
-                    'Magento\Framework\App\Action\Forward',
-                    ['request' => $request]
-                    );
+                if($origUrlKey == $orgRouter){
+                    $request->setModuleName('lofdesigner')
+                    ->setControllerName('index')
+                    ->setActionName('index');
+                    $request->setAlias(Url::REWRITE_REQUEST_PATH_ALIAS, $urlKey);
+                    return $this->actionFactory->create(
+                        'Magento\Framework\App\Action\Forward',
+                        ['request' => $request]
+                        );
+                } else {
+                    return $this->actionFactory->create(
+                        'Magento\Framework\App\Action\Forward',
+                        ['request' => $request]
+                        );
+                }
             }
+
             $url_prefix = $_designerHelper->getConfig('general_settings/url_prefix');
             $url_suffix = $_designerHelper->getConfig('general_settings/url_suffix');
             $url_prefix = $url_prefix?$url_prefix:$route;
@@ -176,6 +190,15 @@ class Router implements RouterInterface
             //Check Group Url
             if( (count($identifiers) == 2 && $identifiers[0] == $url_prefix) || (trim($url_prefix) == '' && count($identifiers) == 1)){
                 $designerUrl = '';
+                
+                if( ($url_suffix && $url_suffix != $orig_url_suffix) || (!$url_suffix && $orig_url_suffix)){
+                    $request->setDispatched(true);
+                    $this->dispatched = true;
+                    return $this->actionFactory->create(
+                        'Magento\Framework\App\Action\Forward',
+                        ['request' => $request]
+                        );
+                }
                 if(trim($url_prefix) == '' && count($identifiers) == 1){
                     $designerUrl = str_replace($url_suffix, '', $identifiers[0]);
                 }

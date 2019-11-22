@@ -82,7 +82,7 @@
             <argument name="filterPool" xsi:type="object" shared="false">DesignerGirdFilterPool</argument>
         </arguments>
     </virtualType>
-    <virtualType name="GroupGridDataProvider" type="Lof\Designer\Ui\DataProvider\Designer\GroupDataProvider">
+    <virtualType name="DesignerGroupGridDataProvider" type="Lof\Designer\Ui\DataProvider\Designer\GroupDataProvider">
         <arguments>
             <argument name="filterPool" xsi:type="object" shared="false">DesignerGirdFilterPool</argument>
         </arguments>

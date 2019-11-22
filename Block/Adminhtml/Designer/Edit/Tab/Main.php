@@ -38,12 +38,24 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
     protected $_viewHelper;
 
     /**
+     * @var \Magento\Directory\Model\Config\Source\Country
+     */
+    protected $_country;
+
+    /**
+     * @var \Magento\Directory\Model\RegionFactory
+     */
+    protected $_regionFactory;
+
+    /**
      * @param \Magento\Backend\Block\Template\Context $context       
      * @param \Magento\Framework\Registry             $registry      
      * @param \Magento\Framework\Data\FormFactory     $formFactory   
      * @param \Magento\Store\Model\System\Store       $systemStore   
      * @param \Magento\Cms\Model\Wysiwyg\Config       $wysiwygConfig 
-     * @param \Lof\Designer\Helper\Data                  $viewHelper    
+     * @param \Lof\Designer\Helper\Data                  $viewHelper  
+     * @param \Magento\Directory\Model\Config\Source\Country $country
+     * @param  \Magento\Directory\Model\RegionFactory $regionFactory  
      * @param array                                   $data          
      */
     public function __construct(
@@ -53,11 +65,15 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         \Magento\Store\Model\System\Store $systemStore,
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         \Lof\Designer\Helper\Data $viewHelper,
+        \Magento\Directory\Model\Config\Source\Country $country,
+        \Magento\Directory\Model\RegionFactory $regionFactory,
         array $data = []
     ) {
         $this->_viewHelper = $viewHelper;
         $this->_systemStore = $systemStore;
         $this->_wysiwygConfig = $wysiwygConfig;
+        $this->_country = $country;
+        $this->_regionFactory = $regionFactory;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -70,8 +86,13 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
     protected function _prepareForm() {
     	/** @var $model \Lof\Designer\Model\Designer */
     	$model = $this->_coreRegistry->registry('lof_designer');
-        
+        $formData = array('country_id' => "");
         $wysiwygConfig = $this->_wysiwygConfig->getConfig(['tab_id' => $this->getTabId()]);
+        $countries = $this->_country->toOptionArray(false, 'US');
+        $regionCollection = $this->_regionFactory->create()->getCollection()->addCountryFilter(
+            $formData['country_id']
+        );
+        $regions = $regionCollection->toOptionArray();
     	/**
     	 * Checking if user have permission to save information
     	 */
@@ -192,8 +213,142 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             );
             $model->setStoreId($this->_storeManager->getStore(true)->getId());
         }
+        $fieldset->addField(
+            'birthday_info',
+            'text',
+            [
+                'name' => 'birthday_info', 
+                'label' => __('Birthday Info'),
+                'title'    => __('Birthday Info'),
+                'disabled' => $isElementDisabled
+            ]
+            );
+        $fieldset->addField(
+    		'contact_name',
+    		'text',
+    		[
+                'name'     => 'contact_name',
+                'label'    => __('Contact Name'),
+                'title'    => __('Contact Name'),
+                'disabled' => $isElementDisabled
+    		]
+            );
 
+        $fieldset->addField(
+    		'company_name',
+    		'text',
+    		[
+                'name'     => 'company_name',
+                'label'    => __('Company Name'),
+                'title'    => __('Company Name'),
+                'disabled' => $isElementDisabled
+    		]
+            );
+        
+        $fieldset->addField(
+    		'email',
+    		'text',
+    		[
+                'name'     => 'email',
+                'label'    => __('Email'),
+                'title'    => __('Email'),
+                'disabled' => $isElementDisabled
+    		]
+            );
+        
+        $fieldset->addField(
+    		'telephone',
+    		'text',
+    		[
+                'name'     => 'telephone',
+                'label'    => __('Telephone'),
+                'title'    => __('Telephone'),
+                'disabled' => $isElementDisabled
+    		]
+            );
 
+            $fieldset->addField(
+                'street',
+                'text',
+                [
+                    'name'     => 'street',
+                    'label'    => __('Street'),
+                    'title'    => __('Street'),
+                    'disabled' => $isElementDisabled
+                ]
+                );
+            
+            $fieldset->addField(
+                'website',
+                'text',
+                [
+                    'name'     => 'website',
+                    'label'    => __('Website'),
+                    'title'    => __('Website'),
+                    'disabled' => $isElementDisabled
+                ]
+                );
+            $fieldset->addField(
+                'country_id',
+                'select',
+                [
+                    'name' => 'country_id',
+                    'label' => __('Country'),
+                    'title'    => __('Country'),
+                    'values' => $countries,
+                    'disabled' => $isElementDisabled
+                ]
+                );
+                
+            $fieldset->addField(
+                'region_id',
+                'select',
+                [
+                    'name' => 'region_id', 
+                    'label' => __('State'),
+                    'title'    => __('State'), 
+                    'values' => $regions,
+                    'disabled' => $isElementDisabled
+                ]
+                );
+                
+            $fieldset->addField(
+                'region',
+                'text',
+                [
+                    'name' => 'region', 
+                    'label' => __('Region'),
+                    'title'    => __('Region'),
+                    'disabled' => $isElementDisabled
+                ]
+                );
+                
+            $fieldset->addField(
+                'city',
+                'text',
+                [
+                    'name' => 'city', 
+                    'label' => __('City'),
+                    'title'    => __('City'),
+                    'disabled' => $isElementDisabled
+                ]
+                );
+    
+            $fieldset->addField(
+                    'postcode',
+                    'text',
+                    [
+                        'name' => 'postcode', 
+                        'label' => __('Postcode'),
+                        'title'    => __('Postcode'),
+                        'disabled' => $isElementDisabled
+                    ]
+                    );
+          $this->setChild(
+                        'form_after',
+                        $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Lof_Designer::country/js.phtml')
+                    );
+                    
         $fieldset->addField(
     		'position',
     		'text',

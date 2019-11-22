@@ -39,6 +39,9 @@ class Designerpage extends \Magento\Framework\View\Element\Template
      */
     protected $_designer;
 
+    protected $_collection = null;
+    
+
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context      
      * @param \Magento\Framework\Registry                      $registry     
@@ -52,6 +55,7 @@ class Designerpage extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \Lof\Designer\Helper\Data $designerHelper,
         \Lof\Designer\Model\Designer $designer,
+        
         array $data = []
         ) {
         $this->_designer = $designer;
@@ -64,20 +68,14 @@ class Designerpage extends \Magento\Framework\View\Element\Template
     {
         if(!$this->getConfig('general_settings/enable')) return;
         parent::_construct();
-
-        $store = $this->_storeManager->getStore();
-        $itemsperpage = (int)$this->getConfig('designer_list_page/item_per_page',12);
-        $designer = $this->_designer;
-        $designerCollection = $designer->getCollection()
-        ->addFieldToFilter('status',1)
-        ->addStoreFilter($store)
-        ->setOrder('position','ASC');
-        $this->setCollection($designerCollection);
-
         $template = '';
         $layout = $this->getConfig('designer_list_page/layout');
         if($layout == 'grid'){
             $template = 'designerlistpage_grid.phtml';
+        }elseif($layout == 'alphabet'){
+            $template = 'designerlistpage_alphabet.phtml';
+        }elseif($layout == 'newlist'){
+            $template = 'designerlistpage_newlist.phtml';
         }else{
             $template = 'designerlistpage_list.phtml';
         }
@@ -97,7 +95,6 @@ class Designerpage extends \Magento\Framework\View\Element\Template
     {
         $breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs');
         $baseUrl = $this->_storeManager->getStore()->getBaseUrl();
-        $designerRoute = $this->_designerHelper->getConfig('general_settings/route');
         $page_title = $this->_designerHelper->getConfig('designer_list_page/page_title');
 
         if($breadcrumbsBlock){
@@ -137,8 +134,20 @@ class Designerpage extends \Magento\Framework\View\Element\Template
      */
     public function getCollection()
     {
-        $this->_collection->getSelect()->reset(\Magento\Framework\DB\Select::ORDER);
-        $this->_collection->setOrder('position','ASC');
+        if($this->_collection == null){
+            $store = $this->_storeManager->getStore();
+            
+            $designer = $this->_designer;
+            $designerCollection = $designer->getCollection()
+            ->addFieldToFilter('status',1)
+            ->addStoreFilter($store)
+            ->setOrder('position','ASC');
+
+            $designerCollection->getSelect()->reset(\Zend_Db_Select::ORDER);
+            $designerCollection->setOrder('position','ASC');
+            $this->setCollection($designerCollection);
+
+        }
         return $this->_collection;
     }
 
@@ -200,13 +209,55 @@ class Designerpage extends \Magento\Framework\View\Element\Template
     {
         $collection = $this->getCollection();
         $toolbar = $this->getToolbarBlock();
-
+        $pretext = $this->getConfig('designer_list_page/pretext');
+        if($pretext){
+            $pretext                   = $this->_designerHelper->filter($pretext);
+        }
+        $this->setData("pretext", $pretext);
+        
         // set collection to toolbar and apply sort
+        $itemsperpage = (int)$this->getConfig('designer_list_page/item_per_page',0);
+        if(!$itemsperpage) {
+            $toolbar = false;
+        }
         if($toolbar){
-            $itemsperpage = (int)$this->getConfig('designer_list_page/item_per_page',12);
             $toolbar->setData('_current_limit',$itemsperpage)->setCollection($collection);
             $this->setChild('toolbar', $toolbar);
         }
+        $layout = $this->getConfig('designer_list_page/layout');
+        if($layout == 'alphabet'){
+            $collection = $this->sortDesignerByAlphabet($collection);
+            $this->setCollection($collection);
+        }
         return parent::_beforeToHtml();
+    }
+
+    public function getAlphabetLetters(){
+        $alphabet = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        return $alphabet;
+    }
+
+    public function sortDesignerByAlphabet($collection = null){
+        if(!$collection){
+            $collection = $this->getCollection();
+        }
+        $letters = $this->getAlphabetLetters();
+        $output = array();
+        foreach($letters as $letter){
+            $output[$letter] = array();
+        }
+        $output["#"] = array();
+
+        foreach($collection as $_designer) {
+            $designer_name = $_designer->getName();
+            $letter = strtoupper(substr($designer_name, 0, 1));
+            if(!in_array($letter,$letters)){
+                $letter = "#";
+            }
+            $total_products = $_designer->getTotalProducts();
+            $output[ $letter ][] = $_designer; // Or, whatever you want to output.
+            
+        }
+        return $output;
     }
 }

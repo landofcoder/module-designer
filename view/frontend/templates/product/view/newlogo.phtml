@@ -1,0 +1,96 @@
+<?php
+$designerCollection = $this->getDesignerCollection();
+$data = $this->helper('Lof\Designer\Helper\Data');
+$designer_layout_listing = $data->getConfig("product_view_page/designer_layout_listing");
+$show_designer_text = $data->getConfig("product_view_page/show_designer_text");
+$show_designer_description = $data->getConfig("product_view_page/show_designer_description");
+$designer_text = $data->getConfig("product_view_page/designer_text");
+$designer_text = $designer_text?$designer_text:__('Designers: ');
+$show_designer_image = $data->getConfig("product_view_page/show_designer_image");
+$show_designer_name = $data->getConfig("product_view_page/show_designer_name");
+$desc_length = $data->getConfig("product_view_page/desc_length");
+$desc_length = $desc_length?(int)$desc_length: 300;
+?>
+<div class="block block-designer-info">
+<?php if($show_designer_text){ ?><h2 class="title chapter designer-label"><?php echo $designer_text; ?></h2> <?php } ?>
+<div class="section">
+<?php if($designerCollection && $designerCollection->count()){ ?>
+	<?php
+	$i = 0;
+	$total = $designerCollection->count();
+	?>
+	<?php if($designer_layout_listing) { 
+		foreach ($designerCollection as $_designer) {
+			?>
+			<div class="designer-item">
+				<?php if($show_designer_image && $_designer->getThumbnailUrl()){ ?>
+				<div class="designer-image">
+					<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>">
+					<img itemprop="image" class="designer-image" src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>">
+					</a>
+				</div>
+				<?php } ?>
+				<div class="designer-details">
+					<span class="designer-name"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName(); ?></a></span>
+					<p class="designer-age"><?php echo $data->getCountryname($_designer->getCountryId()); ?> (<?php echo $_designer->getBirthdayInfo(); ?>)</p>
+					<?php if($show_designer_description){ ?>
+					<div class="designer-bio">
+					<p>
+					<?php
+						$description = $_designer->getDescription();
+						$description = $data->filter($description);
+						$description = strip_tags($description);
+						$description = trim($description);
+						$description = $data->subString($description, $desc_length, "");
+						echo $description;
+					?>
+					</p>
+					</div>
+					<a href="<?php echo $_designer->getUrl(); ?>" class="readmore"><span><?php echo __("Learn More");?></span></a>
+					<?php } ?>
+				</div>
+				<div class="clr clear" style="clear:both;"></div>
+			</div>
+			<?php
+		}
+	} else {
+		foreach ($designerCollection as $_designer) { 
+		
+		?>
+			<span class="designer-image">
+				<?php if($show_designer_image): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>">
+				<img src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>"/></a>
+				<?php endif; ?>
+				<?php if($show_designer_name): ?>
+				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName(); ?></a>
+				<?php endif; ?>
+			</span>
+			<?php 
+			if($show_designer_description){ 
+			?>
+			<div class="designer-description">
+					<span class="designer-name"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName(); ?></a></span>
+					<p class="designer-age"><?php echo $data->getCountryname($_designer->getCountryId()); ?> (<?php echo $_designer->getBirthdayInfo(); ?>)</p>
+					<p>
+					<?php
+						$description = $_designer->getDescription();
+						$description = $data->filter($description);
+						$description = strip_tags($description);
+						$description = trim($description);
+						$description = $data->subString($description, $desc_length, "");
+						echo $description;
+					?>
+					</p>
+					<a href="<?php echo $_designer->getUrl(); ?>" class="readmore"><span><?php echo __("Learn More");?></span></a>
+			</div>
+			<?php } ?>
+			<?php if($i<=($total-2)){ echo ', '; }  ?>
+			<?php $i++; ?>
+	 <?php 
+		}
+	} 
+	?>
+<?php } ?>
+</div>
+</div>

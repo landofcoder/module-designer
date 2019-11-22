@@ -247,12 +247,20 @@ class Designer extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 $where = ['designer_id = ?' => (int)$object->getId()];
                 $this->getConnection()->delete($table, $where);
                 $data = [];
+                $delete_products = [];
                 foreach ($quetionProducts as $k => $_post) {
-                    $data[] = [
-                    'designer_id' => (int)$object->getId(),
-                    'product_id' => $k,
-                    'position' => $_post['product_position']
-                    ];
+                    if($this->isExistProduct($k)){
+                        $delete_products[] = (int)$k;
+                        $data[] = [
+                        'designer_id' => (int)$object->getId(),
+                        'product_id' => $k,
+                        'position' => $_post['product_position']
+                        ];
+                    }
+                }
+                if($delete_products){
+                    $where_delete = ['product_id IN (?)' => $delete_products];
+                    $this->getConnection()->delete($table, $where_delete);
                 }
                 $this->getConnection()->insertMultiple($table, $data);
             }
@@ -261,30 +269,67 @@ class Designer extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         return parent::_afterSave($object);
     }
 
+    public function isExistProduct($product_id = 0){
+        $result = false;
+        if($product_id){
+            $connection = $this->getConnection();
+            $select = $connection->select()->from(
+                $this->getTable('catalog_product_entity'),
+                'COUNT(entity_id)'
+                )
+            ->where(
+                'entity_id = ?',
+                (int)$product_id
+                );
+
+            $total = (int)$connection->fetchOne($select);
+            if($total){
+                $result = true;
+            }
+        }
+        return $result;
+    }
+
     public function saveProduct(\Magento\Framework\Model\AbstractModel $object, $product_id = 0) {
         if($object->getId() && $product_id) {
             $table = $this->getTable('lof_designer_product');
 
-            $select = $this->getConnection()->select()->from(
-            ['cp' => $table]
-            )->where(
-            'cp.designer_id = ?',
-            (int)$object->getId()
-            )->where(
-            'cp.product_id = (?)',
-            (int)$product_id
-            )->limit(1);
+            if(is_numeric($product_id)){
+                $select = $this->getConnection()->select()->from(
+                ['cp' => $table]
+                )->where(
+                'cp.designer_id = ?',
+                (int)$object->getId()
+                )->where(
+                'cp.product_id = (?)',
+                (int)$product_id
+                )->limit(1);
 
-            $row_product = $this->getConnection()->fetchAll($select);
+                $row_product = $this->getConnection()->fetchAll($select);
 
-            if(!$row_product) { // check if not exists product, then insert it into database
+                if(!$row_product) { // check if not exists product, then insert it into database
+                    $data = [];
+                    $data[] = [
+                        'designer_id' => (int)$object->getId(),
+                        'product_id' => (int)$product_id,
+                        'position' => 0
+                        ];
+
+                    $this->getConnection()->insertMultiple($table, $data);
+                }
+            }elseif(is_array($product_id)) {
+                $table = $this->getTable('lof_designer_product');
+                $where = ['designer_id = ?' => (int)$object->getId(), 'product_id IN (?)' => $product_id];
+                $this->getConnection()->delete($table, $where);
+  
                 $data = [];
-                $data[] = [
-                    'designer_id' => (int)$object->getId(),
-                    'product_id' => (int)$product_id,
-                    'position' => 0
-                    ];
-
+                foreach($product_id as $tmp_product_id){
+                    $data[] = [
+                        'designer_id' => (int)$object->getId(),
+                        'product_id' => (int)$tmp_product_id,
+                        'position' => 0
+                        ];
+                }
                 $this->getConnection()->insertMultiple($table, $data);
             }
             return true;
@@ -433,5 +478,22 @@ class Designer extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             }
         }
         return $this;
+    }
+    public function getTotalProducts($designer_id = 0){
+        $total = 0;
+        if($designer_id){
+            $connection = $this->getConnection();
+            $select = $connection->select()->from(
+                $this->getTable('lof_designer_product'),
+                'COUNT(*)'
+                )
+            ->where(
+                'designer_id = ?',
+                (int)$designer_id
+                );
+
+            $total = (int)$connection->fetchOne($select);
+        }
+        return $total;
     }
 }

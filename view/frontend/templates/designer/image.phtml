@@ -1,8 +1,17 @@
 <?php
 $_designer = $block->getCurrentDesigner();
-$_img = '';
-if($_img = $_designer->getImageUrl()){ ?>
-<div class="designer-image">
+$_img = $_designer->getImageUrl();
+$_dataHelper = $this->helper('Lof\Designer\Helper\Data');
+if(!$_img){
+	$_img = $_designer->getThumbnailUrl();
+}
+?>
+<div class="designer-image img-name-age">
+	<?php if($_img){ ?>
 	<img src="<?php echo $_img ?>" alt="<?php echo $_designer->getName(); ?>" class="image"/>
+	<?php } ?>
+	<div class="name-age">
+		<h1 lang="en"><?php echo $_designer->getName(); ?></h1>
+		<p class="age"><?php echo $_dataHelper->getCountryname($_designer->getCountryId()); ?> (<?php echo $_designer->getBirthdayInfo(); ?>)</p>
+	</div>
 </div>
-<?php }

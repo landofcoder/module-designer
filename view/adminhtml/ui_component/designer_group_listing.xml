@@ -8,8 +8,8 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">group_listing.group_listing_data_source</item>
-            <item name="deps" xsi:type="string">group_listing.group_listing_data_source</item>
+            <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing_data_source</item>
+            <item name="deps" xsi:type="string">designer_group_listing.designer_group_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">group_columns</item>
         <item name="buttons" xsi:type="array">
@@ -21,10 +21,10 @@
             </item>
         </item>
     </argument>
-    <dataSource name="group_listing_data_source">
+    <dataSource name="designer_group_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">GroupGridDataProvider</argument>
-            <argument name="name" xsi:type="string">group_listing_data_source</argument>
+            <argument name="class" xsi:type="string">DesignerGroupGridDataProvider</argument>
+            <argument name="name" xsi:type="string">designer_group_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">group_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
@@ -48,7 +48,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="storageConfig" xsi:type="array">
-                        <item name="namespace" xsi:type="string">group_listing</item>
+                        <item name="namespace" xsi:type="string">designer_group_listing</item>
                     </item>
                 </item>
             </argument>
@@ -57,7 +57,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="columnsData" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.group_columns</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.group_columns</item>
                     </item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
                     <item name="displayArea" xsi:type="string">dataGridActions</item>
@@ -68,9 +68,9 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="provider" xsi:type="string">bg.brrand_listinand_listing_data_source</item>
-                    <item name="chipsProvider" xsi:type="string">group_listing.group_listing.listing_top.listing_filters_chips</item>
+                    <item name="chipsProvider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.listing_filters_chips</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.search</item>
                     </item>
                 </item>
@@ -79,9 +79,9 @@
         <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="columnsProvider" xsi:type="string">group_listing.group_listing.group_columns</item>
+                    <item name="columnsProvider" xsi:type="string">designer_group_listing.designer_group_listing.group_columns</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.filters</item>
                     </item>
                     <item name="templates" xsi:type="array">
@@ -93,9 +93,9 @@
                         </item>
                     </item>
                     <item name="childDefaults" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.listing_filters</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.listing_filters</item>
                         <item name="imports" xsi:type="array">
-                            <item name="visible" xsi:type="string">group_listing.group_listing.group_columns.${ $.index }:visible</item>
+                            <item name="visible" xsi:type="string">designer_group_listing.designer_group_listing.group_columns.${ $.index }:visible</item>
                         </item>
                     </item>
                 </item>
@@ -119,7 +119,7 @@
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">group_listing.group_listing.group_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">designer_group_listing.designer_group_listing.group_columns.ids</item>
                     <item name="indexField" xsi:type="string">group_id</item>
                 </item>
             </argument>
@@ -158,9 +158,9 @@
         <paging name="listing_paging">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">group_listing.group_listing.group_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">designer_group_listing.designer_group_listing.group_columns.ids</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.paging</item>
                     </item>
                 </item>
@@ -171,7 +171,7 @@
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="storageConfig" xsi:type="array">
-                    <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.bookmarks</item>
+                    <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
                     <item name="namespace" xsi:type="string">current</item>
                 </item>
                 <!-- <item name="editorConfig" xsi:type="array">
@@ -185,7 +185,7 @@
                 </item> -->
                 <item name="childDefaults" xsi:type="array">
                     <item name="fieldAction" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.group_columns_editor</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.group_columns_editor</item>
                         <item name="target" xsi:type="string">startEdit</item>
                         <item name="params" xsi:type="array">
                             <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -193,7 +193,7 @@
                         </item>
                     </item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">group_listing.group_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
                         <item name="root" xsi:type="string">columns.${ $.index }</item>
                         <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
                     </item>

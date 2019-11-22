@@ -1,0 +1,80 @@
+<?php
+$_designerCollection = $block->getCollection();
+$show_designer_name = $this->getConfig('designer_list_page/show_designer_name');
+$_dataHelper = $this->helper('Lof\Designer\Helper\Data');
+$desc_length = $_dataHelper->getConfig("designer_list_page/desc_length");
+$desc_length = $desc_length?(int)$desc_length: 300;
+$i = 1;
+?>
+<?php if ( $_designerCollection->count() ){ ?>
+<?php $total = $_designerCollection->getSize(); ?>
+<div class="designerlist">
+	<div class="block-content">
+		<?php foreach ($_designerCollection as $_designer) { ?>
+		<?php
+		$custom_css_class = "";
+		if($i % 2 == 0) {
+			$custom_css_class = " body-media-color-block--text-right";
+		}
+		?>
+		<div class="row designer-item-row <?php echo ($i>1?'row-margin-top':''); echo $custom_css_class; ?>">
+			<?php
+			$designer_info = "";
+			$designer_image = "";
+			ob_start();
+			?>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div class="designer-item">
+					<?php if($show_designer_name){ ?>
+					<h2 class="designer-name"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><?php echo $_designer->getName() ?></a></h2>
+					<?php } ?>
+					<div class="designer-country-birthday"><span class="country"><?php echo $_dataHelper->getCountryname($_designer->getCountryId()); ?></span> <span class="birthday">(<?php echo $_designer->getBirthdayInfo(); ?>)</span></div>
+					<div class="designer-info">
+						<?php
+						$description = $_designer->getDescription();
+						$description = $_dataHelper->filter($description);
+						$description = strip_tags($description);
+						$description = trim($description);
+						$description = $_dataHelper->subString($description, $desc_length, "");
+						echo $description;
+						?>
+						<p><a href="<?php echo $_designer->getUrl(); ?>" class="link link--underline body-media-color-block__link ng-star-inserted"><?php echo __("Get to know ").$_designer->getName(); ?></a></p>
+					</div>
+				</div>
+			</div>
+			<?php 
+			$designer_info = ob_get_contents();
+			ob_end_clean();
+			ob_start();
+			?>
+			<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 body-media-color-block__image-col">
+				<div class="body-media-color-block__image-wrapper">
+					<?php if($_designer->getThumbnailUrl()){ ?>
+					<div class="designer-image"><a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>"><img src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>"/></a></div>
+					<?php } ?>
+					<div class="body-media-color-block__image-background" style="background-color: rgb(216, 227, 232);"></div>
+				</div>
+			</div>
+			<?php 
+			$designer_image = ob_get_contents();
+			ob_end_clean();
+
+			if($i % 2 == 0) {
+				echo $designer_image.$designer_info;
+			} else {
+				echo $designer_info.$designer_image;
+			}
+			?>
+		</div>
+		
+		<?php $i++; } ?>
+	</div>
+	<?php if($html = $block->getChildHtml('toolbar')){ ?>
+	<div class="designer-toolbar  toolbar toolbar-products">
+		<?php echo $block->getChildHtml('toolbar'); ?>
+	</div>
+	<?php } ?>
+</div>
+<?php }else{ ?>
+<div class="message info empty"><div><?php echo __('We can\'t find designer matching the selection.'); ?></div></div>
+<?php } ?>

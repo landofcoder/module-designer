@@ -22,7 +22,7 @@ $show_designer_name = $data->getConfig("product_view_page/show_designer_name");
 		foreach ($designerCollection as $_designer) {
 			?>
 			<li class="designer-item">
-				<?php if($show_designer_image): ?>
+				<?php if($show_designer_image && $_designer->getThumbnailUrl()): ?>
 				<a href="<?php echo $_designer->getUrl(); ?>" title="<?php echo $_designer->getName(); ?>">
 				<img src="<?php echo $_designer->getThumbnailUrl(); ?>" alt="<?php echo $_designer->getName(); ?>"/></a>
 				<?php endif; ?>
