@@ -71,26 +71,28 @@ Notably, the admin are enabled to migrate available designers to save lots of ti
 
 Magento 2 product designer extension enables you to add new or edit existing designer information quickly. You can change and update any detail of a specific product designer by filling out those fields:
 
-Designer Name (required)
-URL Key (auto create url key)
-Designer Groups (required): sellect one of available groups
-Image
-Thumbnail
-Description (created by powerful editor tool)
-Store View (required): choose the store view you want to show this designer page
-Birthday Info
-Contact Name
-Email
-Telephone
-Street
-Website
-Country: select a country from the list
-State: select a region, state or province
-Region
-City
-Postcode
-Position
-Status: choose Enabled / Disabled
+<ul>
+ <li>Designer Name (required)</li>
+<li>URL Key (auto create url key)</li>
+<li>Designer Groups (required): sellect one of available groups</li>
+<li>Image</li>
+<li>Thumbnail</li>
+<li>Description (created by powerful editor tool)</li>
+<li>Store View (required): choose the store view you want to show this designer page</li>
+<li>Birthday Info</li>
+<li>Contact Name</li>
+<li>Email</li>
+<li>Telephone</li>
+<li>Street</li>
+<li>Website</li>
+<li>Country: select a country from the list</li>
+<li>State: select a region, state or province</li>
+<li>Region</li>
+<li>City</li>
+<li>Postcode</li>
+<li>Position</li>
+<li>Status: choose Enabled / Disabled</li>
+ </ul>
 
 7. Create multiple designer groups
 
@@ -100,11 +102,13 @@ The admin in our free Magento 2 designer extension can add many new designer gro
 
 In the ''Group Information'' of Magento 2 designer module, the admin will have a chance to set details of a new designer group or change any detail of specific groups in few seconds.
 
-Group Name (required)
-URL Key (auto created)
-Position
-Status: Enabled / Disabled
-Show In Sidebar: Enabled / Disabled
+<ul>
+<li>Group Name (required)</li>
+<li>URL Key (auto created)</li>
+<li>Position</li>
+<li>Status: Enabled / Disabled</li>
+<li>Show In Sidebar: Enabled / Disabled</li>
+ </ul>
 
 9. Manage products of particular designers
 
@@ -124,13 +128,16 @@ In the ''Product Attributes'' management, you can creat a new attribute for prod
 
 13. Configure General Settings
 
-Enable: choose Yes / No to enable or disable Magento 2 designer module
-Designer List Url
-Designer Url Prefix
-Designer Url Suffix
-Enable Designer Categories Menu: Yes / No
-Enable Search Design Block: Yes / No
-Customers can easily search any designers on the frontend.
+<ul>
+ <li>Enable: choose Yes / No to enable or disable Magento 2 designer module</li>
+<li>Designer List Url</li>
+<li>Designer Url Prefix</li>
+<li>Designer Url Suffix</li>
+<li>Enable Designer Categories Menu: Yes / No</li>
+<li>Enable Search Design Block: Yes / No</li>
+</ul> 
+ 
+Customers can easily search any designers on the frontend
 
 14. Configure Migration Settings
 
@@ -139,68 +146,82 @@ Default Designer Group Id To Use To Migration: input designer group id to use as
 
 15. Configure Designer Info On Product View Page
 
-Enabled Designer Block: Yes / No
-Show Designer As Listing: Yes / No
-Show Designer Text: Yes / No
-Show Designer Description: Yes / No
-Show Description Length: add a number of words
-Designer Text: set the title for designers page
-Show Designer Logo: Yes / No
-Show Designer Name: Yes / No
+<ul>
+<li>Enabled Designer Block: Yes / No</li>
+<li>Show Designer As Listing: Yes / No</li>
+<li>Show Designer Text: Yes / No</li>
+<li>Show Designer Description: Yes / No</li>
+<li>Show Description Length: add a number of words</li>
+<li>Designer Text: set the title for designers page</li>
+<li>Show Designer Logo: Yes / No</li>
+<li>Show Designer Name: Yes / No</li>
+</ul>
 
 16. Configure Designer List Page
 
-Layout: select a design
-Pretext HTML (show / hide editor, insert widget, insert image, insert variable)
-Show Designer Name: Yes / No
-Designer Description Length: enter a number
-Number Designer Per Page: enter a number or empty to show all
+<ul>
+<li>Layout: select a design</li>
+<li>Pretext HTML (show / hide editor, insert widget, insert image, insert variable)</li>
+<li>Show Designer Name: Yes / No</li>
+<li>Designer Description Length: enter a number</li>
+<li>Number Designer Per Page: enter a number or empty to show all</li>
+ </ul>
+ 
 Configure SEO-Search Engine Optimization
 
-Page Title
-Meta Description
-Meta Keywords
+<ul>
+<li>Page Title</li>
+<li>Meta Description</li>
+<li>Meta Keywords</li>
+ </ul>
+
 Configure Grid Layout
 
-Number Column on Large Desktop
-Number Column on Desktop Number Column on Tablets Number Column on Phones
+<ul>
+<li>Number Column on Large Desktop</li>
+<li>Number Column on Desktop Number Column on Tablets Number Column on Phones</li>
+ </ul>
 
 17. Configure Group Page
 
-Show Designer Name: Yes / No
-Designer Description Length: add a number of words
-Number Designer Per Page: add a number or emty to show all designers
-Number Column on Large Desktop
-Number Column on Desktop
-Number Column on Tablets
-Number Column on Phones
+<ul>
+<li>Show Designer Name: Yes / No</li>
+<li>Designer Description Length: add a number of words</li>
+<li>Number Designer Per Page: add a number or emty to show all designers</li>
+<li>Number Column on Large Desktop</li>
+<li>Number Column on Desktop</li>
+<li>Number Column on Tablets</li>
+<li>Number Column on Phones</li>
+</ul>
 
 18. Configure Designer Block
 
-Enable: Yes / No
-Title
-Pretext HTML (show / hide editor, insert widget, insert image, insert variable)
-Designer Group
-Show Designer Name: Yes / No
-Number of Designer to Display: enter a number
-Addition Class
-Carousel Layout: choose a layout
-Number Item per Column (default is 1)
-Number Columns On Page (Phones)
-Number Columns On Page (Phones to Small tablets)
-Number Columns On Page (Phones to tablets)
-Number Columns On Page (Portrait tablets)
-Number Columns On Page (Default)
-Number Columns On Page (Large display)
-Autoplay: Yes / No
-Autoplay Timeout: enter a number
-Pause on Hover: Yes / No
-Loop: Yes / No
-RTL: Yes / No
-Show dots navigation: Yes / No
-Show next/prev buttons: Yes / No
-Nav Prev: Prev
-Nav Next: Next
+<ul>
+<li>Enable: Yes / No</li>
+<li>Title</li>
+<li>Pretext HTML (show / hide editor, insert widget, insert image, insert variable)</li>
+<li>Designer Group</li>
+<li>Show Designer Name: Yes / No</li>
+<li>Number of Designer to Display: enter a number</li>
+<li>Addition Class</li>
+<li>Carousel Layout: choose a layout</li>
+<li>Number Item per Column (default is 1)</li>
+<li>Number Columns On Page (Phones)</li>
+<li>Number Columns On Page (Phones to Small tablets)</li>
+<li>Number Columns On Page (Phones to tablets)</li>
+<li>Number Columns On Page (Portrait tablets)</li>
+<li>Number Columns On Page (Default)</li>
+<li>Number Columns On Page (Large display)</li>
+<li>Autoplay: Yes / No</li>
+<li>Autoplay Timeout: enter a number</li>
+<li>Pause on Hover: Yes / No</li>
+<li>Loop: Yes / No</li>
+<li>RTL: Yes / No</li>
+<li>Show dots navigation: Yes / No</li>
+<li>Show next/prev buttons: Yes / No</li>
+<li>Nav Prev: Prev</li>
+<li>Nav Next: Next</li>
+</ul>
 
 ## Best Selling Magento 2 Extensions
 
