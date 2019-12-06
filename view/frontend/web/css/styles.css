@@ -88,7 +88,7 @@
 }
 
 .lof-designerlist .designerlist .designer-item{
-	height: 70px;
+	min-height: 70px;
 }
 .lof-designerlist .designerlist .designer-toolbar{
 	margin-top: 30px;
@@ -520,4 +520,22 @@ form.search-form {
     right: -10px;
     color: #fff;
     position: absolute;
+}
+.body-media-color-block--text-right .body-media-color-block__image-wrapper .designer-image {
+    margin: 0 0 0 auto;
+    text-align: right;
+}
+.body-media-color-block--text-right .body-media-color-block__image-background {
+    left: auto;
+    right: 30px;
+}
+@media (min-width: 601px){
+.body-media-color-block--text-right .body-media-color-block__image-background {
+    right: 60px;
+}
+}
+@media (min-width: 1025px){
+.body-media-color-block--text-right .body-media-color-block__image-background {
+    right: 100px;
+}
 }
