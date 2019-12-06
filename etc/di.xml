@@ -49,7 +49,7 @@
 			<argument name="mainTable" xsi:type="string">lof_designer_group</argument>
 			<argument name="eventPrefix" xsi:type="string">lof_designer_grid_collection</argument>
 			<argument name="eventObject" xsi:type="string">group_grid_collection</argument>
-			<argument name="resourceModel" xsi:type="string">Lof\Designer\Model\ResourceModel\Designer</argument>
+			<argument name="resourceModel" xsi:type="string">Lof\Designer\Model\ResourceModel\Group</argument>
 		</arguments>
 	</type>
 	<type name="Lof\Designer\Model\Layer\Resolver">

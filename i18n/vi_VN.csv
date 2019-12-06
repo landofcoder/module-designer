@@ -1,0 +1,128 @@
+"Manage Designers","Manage Designers"
+"Add New Designer","Add New Designer"
+"Save Designer","Save Designer"
+"Save and Continue Edit","Save and Continue Edit"
+"Delete Designer","Delete Designer"
+"Edit Designer '%1'","Edit Designer '%1'"
+"New Designer","New Designer"
+"Page Layout","Page Layout"
+"Search Designer","Tìm kiếm nhà thiết kế"
+Layout,Layout
+"Layout Update XML","Layout Update XML"
+Design,Design
+"Designer Information","Designer Information"
+"Designer Name","Designer Name"
+"URL Key","URL Key"
+"Empty to auto create url key","Empty to auto create url key"
+"Designer Group","Thiết kế"
+Image,Image
+Thumbnail,Thumbnail
+Description,Description
+"Store View","Store View"
+Position,Position
+Status,Status
+"Page Status","Page Status"
+"Meta Data","Meta Data"
+"Page Title","Page Title"
+Keywords,Keywords
+"Meta Keywords","Meta Keywords"
+"Meta Description","Meta Description"
+ID,ID
+Name,Name
+Type,Type
+"Attribute Set","Attribute Set"
+Visibility,Visibility
+SKU,SKU
+Price,Price
+Products,Products
+Preview,Preview
+"Manage Designer Groups","Manage Designer Groups"
+"Add New Designer Group","Add New Designer Group"
+"Save Group","Save Group"
+"Delete Group","Delete Group"
+"Edit Group '%1'","Edit Group '%1'"
+"New Group","New Group"
+"Group Information","Group Information"
+"Group Name","Group Name"
+"Show In Sidebar","Show In Sidebar"
+"WYSIWYG Editor","WYSIWYG Editor"
+Title,Title
+Home,Home
+"Go to Home Page","Go to Home Page"
+"The designer has been deleted.","The designer has been deleted."
+"We can't find a designer to delete.","We can't find a designer to delete."
+Designer,Designer
+"This designer no longer exits. ","This designer no longer exits. "
+"Edit Designer","Edit Designer"
+Designers,Designers
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the page.","Something went wrong while saving the page."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"A total of %1 record(s) have been disabled.","A total of %1 record(s) have been disabled."
+"A total of %1 record(s) have been enabled.","A total of %1 record(s) have been enabled."
+"You saved this designer.","You saved this designer."
+"Something went wrong while saving the designer.","Something went wrong while saving the designer."
+"Designer Groups","Designer Groups"
+"URL key already exists.","URL key already exists."
+"You saved this group.","You saved this group."
+Enabled,Enabled
+Disabled,Disabled
+List,List
+Grid,Grid
+No,No
+Yes,Yes
+"URL key for specified store already exists.","URL key for specified store already exists."
+"'URL key already exists.' .","'URL key already exists.' ."
+"Owl Carousel","Owl Carousel"
+"Bootstrap Carousel","Bootstrap Carousel"
+"All Store Views","All Store Views"
+Edit,Edit
+"We can't find designers matching the selection.","We can't find designers matching the selection."
+"We can't find designer matching the selection.","We can't find designer matching the selection."
+Items,Items
+of,of
+"%1 Item","%1 Item"
+"%1 Items","%1 Items"
+Previous,Previous
+Next,Next
+"Insert Widget...","Insert Widget..."
+"Lof Designer List","Lof Designer List"
+"Get designer list","Get designer list"
+"Select Static Block","Select Static Block"
+"Pretext HTML","Pretext HTML"
+"Number of Designer to Display","Number of Designer to Display"
+"Number Item per Column","Number Item per Column"
+"Show Designer Name","Show Designer Name"
+"Addtion Class","Addtion Class"
+"Carousel Layout","Carousel Layout"
+"Number Columns On Page (Phones)","Number Columns On Page (Phones)"
+"Show number items when screen size bellow 480px","Show number items when screen size bellow 480px"
+"Number Columns On Page (Phones to Small tablets)","Number Columns On Page (Phones to Small tablets)"
+"Show number items when screen size between 641px and 480px","Show number items when screen size between 641px and 480px"
+"Number Columns On Page (Phones to tablets)","Number Columns On Page (Phones to tablets)"
+"Show number items when screen size between 768px and 641px","Show number items when screen size between 768px and 641px"
+"Number Columns On Page (Portrait tablets)","Number Columns On Page (Portrait tablets)"
+"Show number items when screen size between 979px and 769px","Show number items when screen size between 979px and 769px"
+"Number Columns On Page (Default)","Number Columns On Page (Default)"
+"Show number items when screen size between 1199px and 980px","Show number items when screen size between 1199px and 980px"
+"Number Columns On Page (Large display)","Number Columns On Page (Large display)"
+"Show number items when screen size 1200px and up","Show number items when screen size 1200px and up"
+Autoplay,Autoplay
+"Autoplay Timeout","Autoplay Timeout"
+"Item Per Page","Item Per Page"
+"Number Column on Desktop","Number Column on Desktop"
+"Number Column on Tablets","Number Column on Tablets"
+"Number Column on Phones","Number Column on Phones"
+Interval,Interval
+RTL,RTL
+Loop,Loop
+"Show dots navigations","Show dots navigations"
+"Show next/prev buttons.","Show next/prev buttons."
+"Nav Prev Text","Nav Prev Text"
+"Nav Next Text","Nav Next Text"
+Template,Template
+Delete,Delete
+"Delete items","Delete items"
+"Are you sure you wan't to delete selected items?","Are you sure you wan't to delete selected items?"
+Disable,Disable
+Enable,Enable

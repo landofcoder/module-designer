@@ -67,7 +67,7 @@
         <filterSearch name="fulltext">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="provider" xsi:type="string">bg.brrand_listinand_listing_data_source</item>
+                    <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing_data_source</item>
                     <item name="chipsProvider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.listing_filters_chips</item>
                     <item name="storageConfig" xsi:type="array">
                         <item name="provider" xsi:type="string">designer_group_listing.designer_group_listing.listing_top.bookmarks</item>
