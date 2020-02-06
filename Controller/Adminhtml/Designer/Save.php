@@ -29,18 +29,23 @@ class Save extends \Magento\Backend\App\Action
      */
     protected $_fileSystem;
 
+    protected $_logger;
+
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
      * @param \Magento\Framework\Filesystem $filesystem
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Filesystem $filesystem,
-        \Magento\Backend\Helper\Js $jsHelper
+        \Magento\Backend\Helper\Js $jsHelper,
+        \Psr\Log\LoggerInterface $logger
         ) {
         $this->_fileSystem = $filesystem;
         $this->jsHelper = $jsHelper;
+        $this->_logger = $logger;
         parent::__construct($context);
     }
 
